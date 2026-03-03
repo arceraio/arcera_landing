@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcera — Home Documentation & Insurance Claims Advocacy</title>
+  <meta name="description" content="Arcera combines AI-powered home documentation with vetted claims advocacy — so when disaster strikes, your proof is already done. Serving Los Angeles, CA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #F9F7F4;
+      --navy:    #0D1B2A;
+      --gold:    #C9A84C;
+      --body:    #2C2C2C;
+      --muted:   #6B7280;
+      --divider: #E8E4DF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      height: 64px;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 17px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-link {
+      font-size: 10.5px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(249,247,244,0.42);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: rgba(249,247,244,0.85); }
+
+    .nav-cta {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: #dbb95e; }
+
+    .nav-sub {
+      text-align: center;
+      padding: 7px 56px;
+      background: rgba(201,168,76,0.07);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(249,247,244,0.35);
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      z-index: 199;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      padding-top: 88px; /* nav + sub */
+    }
+
+    /* Left: copy */
+    .hero-left {
+      background: var(--navy);
+      padding: 88px 72px 80px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background grid */
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+
+    /* Vertical gold line */
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 15%; bottom: 15%; right: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.35), transparent);
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.1s;
+    }
+
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(38px, 4.5vw, 60px);
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      color: var(--bg);
+      margin-bottom: 28px;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.2s;
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(249,247,244,0.65);
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(249,247,244,0.48);
+      max-width: 420px;
+      margin-bottom: 48px;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.3s;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.4s;
+    }
+
+    .btn-primary {
+      padding: 15px 36px;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; }
+
+    .btn-ghost-light {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(249,247,244,0.5);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .btn-ghost-light:hover { color: rgba(249,247,244,0.85); }
+    .btn-ghost-light svg { transition: transform 0.25s ease; }
+    .btn-ghost-light:hover svg { transform: translateX(4px); }
+
+    /* Right: photo stand-in */
+    .hero-right {
+      background: #0a1520;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Atmospheric warm glow — placeholder for real photo */
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 40%, rgba(201,168,76,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 30% 70%, rgba(249,200,120,0.05) 0%, transparent 60%);
+    }
+
+    /* Architectural line art — suggests a luxury interior */
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .hero-photo-label {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .hero-photo-label-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.45);
+    }
+
+    /* Diagonal rule in photo area */
+    .hero-diagonal {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION — THE GAP
+    ───────────────────────────────────────── */
+    .gap-section {
+      background: var(--bg);
+      padding: 112px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gap-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .gap-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 46px);
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 64px;
+      max-width: 600px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: auto 1px auto 1fr;
+      align-items: center;
+      gap: 56px;
+      margin-bottom: 56px;
+    }
+
+    .stat-block {}
+
+    .stat-num {
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      font-size: clamp(72px, 10vw, 120px);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat-num.gold { color: var(--gold); }
+    .stat-num.dim  { color: #c8c4be; }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .stat-caption {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--divider);
+      text-align: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      white-space: nowrap;
+    }
+
+    .stats-rule {
+      width: 1px;
+      height: 100px;
+      background: var(--divider);
+    }
+
+    .gap-body {
+      font-size: 15.5px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 540px;
+      align-self: center;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION — CLIENT STORIES
+    ───────────────────────────────────────── */
+    .stories-section {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stories-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+      position: relative;
+    }
+
+    .story + .story {
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Story content */
+    .story-content {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .story:nth-child(2) .story-content {
+      order: 2;
+    }
+
+    .story-location {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .story-narrative {
+      font-size: 14.5px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(249,247,244,0.55);
+      margin-bottom: 32px;
+    }
+
+    .story-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.45;
+      color: var(--bg);
+      padding-left: 20px;
+      border-left: 2px solid var(--gold);
+      margin-bottom: 36px;
+    }
+
+    .story-outcomes {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .outcome {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .outcome-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    .outcome-label {
+      font-size: 10.5px;
+      font-weight: 300;
+      color: rgba(249,247,244,0.3);
+      letter-spacing: 0.06em;
+    }
+
+    /* Story visual panel */
+    .story-visual {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story:nth-child(2) .story-visual {
+      order: 1;
+    }
+
+    /* Warm atmospheric placeholder for photo */
+    .story-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .story-1-bg {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        #070f18;
+    }
+
+    .story-2-bg {
+      background:
+        radial-gradient(ellipse 60% 80% at 40% 60%, rgba(180,140,60,0.06) 0%, transparent 70%),
+        #060e17;
+    }
+
+    .story-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 160px;
+      color: rgba(201,168,76,0.06);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION — HOW IT WORKS
+    ───────────────────────────────────────── */
+    .how-section {
+      background: var(--bg);
+      padding: 112px 56px;
+    }
+
+    .how-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .how-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 72px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .how-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+
+    .how-sub {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 320px;
+      text-align: right;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .how-card {
+      padding: 48px 40px;
+      border-top: 2px solid var(--divider);
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .how-card:not(:last-child) {
+      border-right: 1px solid var(--divider);
+    }
+
+    .how-card:hover {
+      border-top-color: var(--gold);
+    }
+
+    .how-step {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+
+    .how-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .how-card-body {
+      font-size: 13.5px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .how-card-detail {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      opacity: 0.7;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION — FINAL CTA
+    ───────────────────────────────────────── */
+    .cta-section {
+      background: var(--navy);
+      padding: 120px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cta-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(36px, 5vw, 56px);
+      color: var(--bg);
+      letter-spacing: 0.02em;
+      line-height: 1.08;
+      margin-bottom: 20px;
+    }
+
+    .cta-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(249,247,244,0.42);
+      margin-bottom: 48px;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .btn-cta-primary {
+      padding: 16px 44px;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s;
+    }
+    .btn-cta-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-cta-primary:hover::before { transform: translateX(0); }
+    .btn-cta-primary span { position: relative; z-index: 1; }
+
+    .btn-cta-ghost {
+      padding: 15px 36px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(249,247,244,0.5);
+      text-decoration: none;
+      font-size: 10.5px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s;
+    }
+    .btn-cta-ghost::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.07);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-cta-ghost:hover::before { transform: translateX(0); }
+    .btn-cta-ghost:hover { color: rgba(249,247,244,0.85); }
+    .btn-cta-ghost span { position: relative; z-index: 1; }
+
+    .cta-note {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(249,247,244,0.2);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: #070f18;
+      padding: 52px 56px 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 48px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {}
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 18px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-tagline {
+      font-size: 12px;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(249,247,244,0.28);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-link {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(249,247,244,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(249,247,244,0.2);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-contact {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-contact a {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(249,247,244,0.22);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: rgba(249,247,244,0.55); }
+
+    /* ─────────────────────────────────────────
+       SCROLL-TRIGGERED REVEALS
+    ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.32s; }
+
+    /* ─────────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { gap: 16px; }
+      .nav-link { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { display: none; }
+      .hero-left { padding: 72px 28px 60px; }
+      .gap-section, .how-section, .cta-section { padding: 72px 28px; }
+      .stats-row { grid-template-columns: 1fr 1px 1fr; gap: 32px; }
+      .stat-caption { display: none; }
+      .stories-section .story { grid-template-columns: 1fr; }
+      .story-visual { min-height: 220px; }
+      .story-content { padding: 48px 28px; }
+      .story:nth-child(2) .story-content { order: 1; }
+      .story:nth-child(2) .story-visual { order: 2; }
+      .how-grid { grid-template-columns: 1fr; }
+      .how-card:not(:last-child) { border-right: none; border-bottom: 1px solid var(--divider); }
+      .how-header { flex-direction: column; align-items: flex-start; }
+      .how-sub { text-align: left; }
+      footer { padding: 48px 24px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Arcera</a>
+    <div class="nav-links">
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="help.html" class="nav-link">FAQ</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="schedule.html" class="nav-cta">Schedule a Call</a>
+    </div>
+  </nav>
+  <div class="nav-sub">Currently serving Los Angeles, CA &ensp;·&ensp; Palisades &ensp;·&ensp; Bel Air &ensp;·&ensp; Brentwood &ensp;·&ensp; Hancock Park &ensp;·&ensp; Malibu &ensp;·&ensp; Calabasas</div>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Home Documentation &amp; Claims Advocacy</p>
+      <h1 class="hero-h1">Your home<br/>is documented.<br/><em>Your family<br/>is protected.</em></h1>
+      <p class="hero-sub">Arcera combines AI-powered home documentation with vetted claims advocacy — so when disaster strikes, your proof is already done.</p>
+      <div class="hero-actions">
+        <a href="schedule.html" class="btn-primary"><span>Schedule Your Strategy Call</span></a>
+        <a href="#how-it-works" class="btn-ghost-light">
+          See how it works
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-label">
+        <p class="hero-photo-label-text">Serving Los Angeles Homes</p>
+      </div>
+      <div class="hero-diagonal">
+        <!-- Atmospheric placeholder — replace with <img> of real LA interior -->
+        <svg width="100%" height="100%" viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;opacity:0.12">
+          <line x1="0" y1="700" x2="600" y2="0" stroke="#C9A84C" stroke-width="0.5"/>
+          <line x1="0" y1="600" x2="600" y2="100" stroke="#C9A84C" stroke-width="0.3"/>
+          <line x1="0" y1="800" x2="600" y2="200" stroke="#C9A84C" stroke-width="0.3"/>
+          <rect x="80" y="120" width="200" height="280" stroke="#C9A84C" stroke-width="0.4" fill="none"/>
+          <rect x="340" y="300" width="160" height="200" stroke="#C9A84C" stroke-width="0.4" fill="none"/>
+          <circle cx="420" cy="180" r="60" stroke="#C9A84C" stroke-width="0.4" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE GAP ── -->
+  <section class="gap-section">
+    <div class="gap-inner">
+      <p class="section-eyebrow reveal">The documentation gap</p>
+      <h2 class="gap-heading reveal reveal-delay-1">Coverage is not the same as getting paid.</h2>
+      <div class="stats-row reveal reveal-delay-2">
+        <div class="stat-block">
+          <div class="stat-num gold">7</div>
+          <p class="stat-label">Days — Arcera clients</p>
+        </div>
+        <div class="stats-rule"></div>
+        <div class="stat-block">
+          <div class="stat-num dim">45</div>
+          <p class="stat-label">Days — National average</p>
+        </div>
+        <p class="stat-caption">Average time from claim submission to approval</p>
+        <div class="gap-body">
+          Your homeowners policy covers the loss. Your documentation determines how much you actually receive — and how long it takes. Most homeowners only discover the gap after disaster has already arrived.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CLIENT STORIES ── -->
+  <section class="stories-section">
+
+    <!-- Story 1 — Pacific Palisades -->
+    <div class="story">
+      <div class="story-content">
+        <p class="story-location reveal">Pacific Palisades</p>
+        <p class="story-narrative reveal reveal-delay-1">A client — successful, frequently traveling — signed up primarily for the YOLO AI recognition tool so his wife would have a record of everything while he was away. Four months later, a pipe burst in the wine cellar. About $80,000 in wine and custom millwork. Because they had completed an Arcera walkthrough three weeks prior, they had timestamped video and a complete inventory. The insurance company asked for proof of loss. They hit play.</p>
+        <blockquote class="story-quote reveal reveal-delay-2">"I didn't buy Arcera for the insurance payout. I bought it for the trust that Arcera will have my back."</blockquote>
+        <div class="story-outcomes reveal reveal-delay-3">
+          <div class="outcome">
+            <span class="outcome-val">$80k</span>
+            <span class="outcome-label">Recovered</span>
+          </div>
+          <div class="outcome">
+            <span class="outcome-val">7 days</span>
+            <span class="outcome-label">Approval</span>
+          </div>
+          <div class="outcome">
+            <span class="outcome-val">0</span>
+            <span class="outcome-label">Receipts required</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-visual">
+        <div class="story-visual-inner story-1-bg">
+          <span class="story-num">01</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Story 2 — Brentwood -->
+    <div class="story">
+      <div class="story-content">
+        <p class="story-location reveal">Brentwood</p>
+        <p class="story-narrative reveal reveal-delay-1">A couple returned from six weeks abroad to find a slow leak had silently destroyed custom cabinetry, imported stone flooring, and the adjacent utility corridor. The insurance company's initial offer covered about a third of the actual loss — citing "gradual damage." Because they had completed an Arcera walkthrough before leaving, there was a timestamped record of the kitchen's exact condition six months prior. The Arcera-referred adjuster challenged the denial. The revised settlement was $95,000.</p>
+        <blockquote class="story-quote reveal reveal-delay-2">"The insurance company said 'gradual damage.' Arcera's record said otherwise. That timestamp was worth more than any receipt."</blockquote>
+        <div class="story-outcomes reveal reveal-delay-3">
+          <div class="outcome">
+            <span class="outcome-val">$95k</span>
+            <span class="outcome-label">Final settlement</span>
+          </div>
+          <div class="outcome">
+            <span class="outcome-val">$62k</span>
+            <span class="outcome-label">Above initial offer</span>
+          </div>
+          <div class="outcome">
+            <span class="outcome-val">10%</span>
+            <span class="outcome-label">Adjuster fee — paid at close</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-visual">
+        <div class="story-visual-inner story-2-bg">
+          <span class="story-num">02</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how-section" id="how-it-works">
+    <div class="how-inner">
+      <div class="how-header">
+        <div>
+          <p class="section-eyebrow reveal">The Arcera process</p>
+          <h2 class="how-heading reveal reveal-delay-1">How it works</h2>
+        </div>
+        <p class="how-sub reveal reveal-delay-2">Three components. One complete service. No overlap with your existing policy.</p>
+      </div>
+      <div class="how-grid">
+        <div class="how-card reveal">
+          <p class="how-step">01 — Document</p>
+          <h3 class="how-card-title">The Walkthrough</h3>
+          <p class="how-card-body">A 90-minute in-person AI-assisted walkthrough with the Arcera team. Serial numbers, provenance, high-value item inventory. We know what insurers actually require.</p>
+          <p class="how-card-detail">$3,500 + $30 per high-value item</p>
+        </div>
+        <div class="how-card reveal reveal-delay-1">
+          <p class="how-step">02 — Store &amp; Monitor</p>
+          <h3 class="how-card-title">Ongoing Protection</h3>
+          <p class="how-card-body">Your YOLO AI recognition account. Annual renewal walkthrough. Secure, timestamped documentation — updated as your home evolves.</p>
+          <p class="how-card-detail">Monthly subscription</p>
+        </div>
+        <div class="how-card reveal reveal-delay-2">
+          <p class="how-step">03 — Defend</p>
+          <h3 class="how-card-title">Claims Advocacy</h3>
+          <p class="how-card-body">Access to our vetted public adjuster network. California caps adjusters at 15% of settlement. Arcera clients pay 10%. You pay only if they increase your payout.</p>
+          <p class="how-card-detail">10% of settlement — paid at close only</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <p class="cta-eyebrow reveal">Ready to begin</p>
+      <h2 class="cta-heading reveal reveal-delay-1">Take this off<br/>your plate.</h2>
+      <p class="cta-body reveal reveal-delay-2">Schedule your free 30-minute Onboarding &amp; Strategy call. We'll walk you through documentation, set up your YOLO account, and assign your dedicated adjuster contact. No pressure. No commitment.</p>
+      <div class="cta-actions reveal reveal-delay-3">
+        <a href="schedule.html" class="btn-cta-primary"><span>Schedule a Call</span></a>
+        <a href="pricing.html" class="btn-cta-ghost"><span>See Pricing</span></a>
+      </div>
+      <p class="cta-note reveal">Arcera currently serves Los Angeles homes only.</p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">Arcera</a>
+          <p class="footer-tagline">Be prepared, stay organized, and thrive.</p>
+        </div>
+        <div class="footer-links">
+          <a href="pricing.html" class="footer-link">Pricing</a>
+          <a href="help.html" class="footer-link">FAQ</a>
+          <a href="schedule.html" class="footer-link">Schedule a Call</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">Currently serving Los Angeles, CA</p>
+        <div class="footer-contact">
+          <a href="mailto:support@arcera.io">support@arcera.io</a>
+          <a href="tel:9257086664">925-708-6664</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered reveals
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

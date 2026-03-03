@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcera — FAQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #F9F7F4;
+      --navy:    #0D1B2A;
+      --gold:    #C9A84C;
+      --body:    #2C2C2C;
+      --muted:   #6B7280;
+      --divider: #E8E4DF;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      height: 60px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 16px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(249,247,244,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: rgba(249,247,244,0.85); }
+
+    .nav-cta {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 9px 22px;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #d9b85c; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 64px 56px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.35;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 780px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--bg);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(249,247,244,0.4);
+      line-height: 1.6;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 60px 56px 80px;
+    }
+
+    /* ── ACCORDION ── */
+    .accordion-item {
+      border-bottom: 1px solid var(--divider);
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .accordion-item:nth-child(1) { animation-delay: 0.1s; }
+    .accordion-item:nth-child(2) { animation-delay: 0.18s; }
+    .accordion-item:nth-child(3) { animation-delay: 0.26s; }
+    .accordion-item:first-child  { border-top: 1px solid var(--divider); }
+
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .trigger-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .item-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-top: 4px;
+      flex-shrink: 0;
+      width: 24px;
+    }
+
+    .accordion-question {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 22px;
+      letter-spacing: 0.01em;
+      color: var(--navy);
+      line-height: 1.3;
+      transition: color 0.2s;
+    }
+
+    .accordion-trigger:hover .accordion-question { color: var(--gold); }
+
+    .accordion-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      border: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .accordion-icon svg {
+      color: var(--muted);
+      transition: transform 0.35s ease, color 0.2s;
+    }
+
+    .accordion-item.open .accordion-icon {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .accordion-item.open .accordion-icon svg {
+      color: var(--bg);
+      transform: rotate(45deg);
+    }
+
+    /* Body */
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .accordion-item.open .accordion-body { max-height: 600px; }
+
+    .accordion-answer {
+      padding: 0 0 32px 44px;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    /* ── STILL NEED HELP ── */
+    .help-footer {
+      background: var(--navy);
+      padding: 64px 56px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.38s;
+    }
+
+    .help-footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .help-footer-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .help-footer-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .help-footer-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 32px;
+      color: var(--bg);
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+
+    .help-footer-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(249,247,244,0.38);
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .help-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .help-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s;
+    }
+    .help-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .help-btn:hover::before { transform: translateX(0); }
+    .help-btn span { position: relative; z-index: 1; }
+
+    .help-btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .help-btn-gold::before { background: var(--bg); }
+
+    .help-btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(249,247,244,0.55);
+    }
+    .help-btn-ghost::before { background: rgba(255,255,255,0.08); }
+    .help-btn-ghost:hover { color: var(--bg); }
+
+    .footer-service-note {
+      margin-top: 28px;
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(249,247,244,0.2);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      nav, .hero, .content, .help-footer { padding-left: 20px; padding-right: 20px; }
+      .accordion-answer { padding-left: 0; }
+      .trigger-left { gap: 12px; }
+      .help-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Arcera</a>
+    <div class="nav-links">
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="help.html" class="nav-link">FAQ</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="schedule.html" class="nav-cta">Schedule a Call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Common Questions</p>
+      <h1 class="hero-title">We've heard these before.</h1>
+      <p class="hero-sub">Straightforward answers to the questions most homeowners ask before they sign up.</p>
+    </div>
+  </div>
+
+  <!-- FAQ CONTENT -->
+  <div class="content">
+
+    <div class="accordion-item open">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <span class="trigger-left">
+          <span class="item-num">01</span>
+          <span class="accordion-question">"My insurance agent says I'm fully covered."</span>
+        </span>
+        <span class="accordion-icon">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </button>
+      <div class="accordion-body">
+        <p class="accordion-answer">And they're probably right — on paper. Coverage and claims are two different things. An agent sells the policy; we help you collect on it. The question isn't "am I covered?" — it's "how painful will it be to prove it?" We remove the pain.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <span class="trigger-left">
+          <span class="item-num">02</span>
+          <span class="accordion-question">"Can't I just take photos on my phone?"</span>
+        </span>
+        <span class="accordion-icon">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </button>
+      <div class="accordion-body">
+        <p class="accordion-answer">You absolutely can. The difference is twofold: First, we document the right things — serial numbers, provenance details — that insurers actually require. Second, if a disaster hits, you're dealing with trauma. We deal with the insurance company. You don't want to be negotiating with an adjuster from a hotel room, trying to remember what was in your closet. We become your proxy.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <span class="trigger-left">
+          <span class="item-num">03</span>
+          <span class="accordion-question">"It seems expensive."</span>
+        </span>
+        <span class="accordion-icon">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </button>
+      <div class="accordion-body">
+        <p class="accordion-answer">This is an investment. A single missing line item on a Proof of Loss can cost ten times our annual fee. What we're really selling is a guarantee that you won't leave money on the table at your most vulnerable moment. If it's about value: what is peace of mind worth to you?</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STILL NEED HELP -->
+  <div class="help-footer">
+    <div class="help-footer-inner">
+      <p class="help-footer-eyebrow">Still have questions?</p>
+      <h2 class="help-footer-title">Talk to us.</h2>
+      <p class="help-footer-sub">We'll follow up within one business day. Or lock in a time on our calendar now — no commitment required.</p>
+      <div class="help-actions">
+        <a href="schedule.html" class="help-btn help-btn-gold"><span>Schedule a Call</span></a>
+        <a href="contact.html" class="help-btn help-btn-ghost"><span>Send a Message</span></a>
+      </div>
+      <p class="footer-service-note">Currently serving Los Angeles homes only</p>
+    </div>
+  </div>
+
+  <script>
+    function toggle(trigger) {
+      const item = trigger.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>

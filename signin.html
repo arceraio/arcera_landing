@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcera — Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0D1B2A;
+      --card:      #F9F7F4;
+      --navy:      #0D1B2A;
+      --gold:      #C9A84C;
+      --gold-dim:  #a8883c;
+      --body:      #2C2C2C;
+      --muted:     #6B7280;
+      --divider:   #E0DBD4;
+      --error:     #8B1A1A;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle noise texture over navy background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Faint geometric lines in background */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    /* Wordmark */
+    .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0s;
+    }
+
+    /* Card */
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      position: relative;
+      padding: 52px 48px 44px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+      animation-delay: 0.1s;
+
+      /* Certificate-style gold top border */
+      border-top: 3px solid var(--gold);
+
+      /* Layered shadow for depth */
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.06),
+        0 8px 24px rgba(0,0,0,0.14),
+        0 32px 64px rgba(0,0,0,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    /* Thin gold corner ornaments */
+    .card::before,
+    .card::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-color: var(--gold);
+      border-style: solid;
+      opacity: 0.5;
+    }
+    .card::before {
+      bottom: 16px;
+      left: 16px;
+      border-width: 0 0 1px 1px;
+    }
+    .card::after {
+      bottom: 16px;
+      right: 16px;
+      border-width: 0 1px 1px 0;
+    }
+
+    /* Heading */
+    .heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .heading-rule {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 36px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.25s;
+    }
+
+    /* Field group */
+    .field {
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .field:nth-child(1) { animation-delay: 0.3s; }
+    .field:nth-child(2) { animation-delay: 0.38s; }
+    .field:nth-child(3) { animation-delay: 0.46s; }
+
+    .field label {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* Underline-only inputs */
+    .field input[type="email"],
+    .field input[type="password"],
+    .field input[type="text"] {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--divider);
+      outline: none;
+      padding: 8px 0 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--body);
+      transition: border-color 0.25s ease;
+      position: relative;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    /* Animated gold underline on focus */
+    .input-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.35s ease;
+    }
+
+    .input-wrap:focus-within::after {
+      width: 100%;
+    }
+
+    .field input::placeholder {
+      color: #C8C4BE;
+      font-weight: 300;
+    }
+
+    /* Password toggle */
+    .password-toggle {
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+    .password-toggle:hover { color: var(--gold); }
+
+    /* Remember me row */
+    .remember-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    /* Custom checkbox */
+    .checkbox-wrap {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .checkbox-wrap input {
+      opacity: 0;
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      margin: 0;
+      z-index: 1;
+    }
+    .checkbox-box {
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--divider);
+      background: transparent;
+      transition: border-color 0.2s, background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .checkbox-box svg {
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .checkbox-wrap input:checked ~ .checkbox-box {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+    .checkbox-wrap input:checked ~ .checkbox-box svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .remember-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Primary button */
+    .btn-primary {
+      width: 100%;
+      padding: 15px;
+      background: var(--navy);
+      color: var(--card);
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s ease;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.55s;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--navy); }
+
+    .btn-primary span { position: relative; z-index: 1; }
+
+    /* Links row */
+    .links-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .link {
+      font-size: 11.5px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .link::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+
+    .link:hover { color: var(--navy); }
+    .link:hover::after { width: 100%; }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 36px 0 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.65s;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    .divider-text {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* Social buttons */
+    .social-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.72s;
+    }
+
+    .btn-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      background: transparent;
+      border: 1px solid var(--divider);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--body);
+      letter-spacing: 0.02em;
+      transition: border-color 0.25s, background 0.25s, color 0.25s;
+    }
+
+    .btn-social:hover {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.05);
+      color: var(--navy);
+    }
+
+    .btn-social svg {
+      flex-shrink: 0;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer note */
+    .footer-note {
+      margin-top: 28px;
+      font-size: 11px;
+      color: rgba(249,247,244,0.3);
+      letter-spacing: 0.06em;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.8s;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="wordmark">Arcera</div>
+
+    <div class="card">
+
+      <h1 class="heading">Sign In</h1>
+      <div class="heading-rule"></div>
+
+      <form novalidate>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <div class="input-wrap">
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••••••" />
+            <button type="button" class="password-toggle" onclick="togglePassword()">show</button>
+          </div>
+        </div>
+
+        <div class="remember-row">
+          <label class="checkbox-wrap" for="remember">
+            <input type="checkbox" id="remember" name="remember" />
+            <span class="checkbox-box">
+              <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+                <path d="M1 3L3.5 5.5L8 1" stroke="#0D1B2A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </label>
+          <label class="remember-label" for="remember">Remember me for 30 days</label>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Sign In</span>
+        </button>
+
+        <div class="links-row">
+          <a href="signin.html" class="link">Forgot password?</a>
+          <a href="signin.html" class="link">Create account</a>
+        </div>
+
+        <div class="divider">
+          <span class="divider-line"></span>
+          <span class="divider-text">Or continue with</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <div class="social-row">
+          <button type="button" class="btn-social">
+            <!-- Google -->
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M15.68 8.18c0-.57-.05-1.11-.14-1.64H8v3.1h4.3a3.67 3.67 0 01-1.6 2.41v2h2.59c1.52-1.4 2.39-3.46 2.39-5.87z" fill="#4285F4"/>
+              <path d="M8 16c2.16 0 3.97-.71 5.3-1.93l-2.59-2a4.8 4.8 0 01-2.71.75c-2.08 0-3.84-1.4-4.47-3.29H.86v2.07A8 8 0 008 16z" fill="#34A853"/>
+              <path d="M3.53 9.53A4.8 4.8 0 013.28 8c0-.53.09-1.05.25-1.53V4.4H.86A8 8 0 000 8c0 1.29.31 2.51.86 3.6l2.67-2.07z" fill="#FBBC05"/>
+              <path d="M8 3.18c1.17 0 2.22.4 3.05 1.19l2.28-2.28C11.96.8 10.15 0 8 0A8 8 0 00.86 4.4L3.53 6.47C4.16 4.58 5.92 3.18 8 3.18z" fill="#EA4335"/>
+            </svg>
+            Google
+          </button>
+
+          <button type="button" class="btn-social">
+            <!-- Facebook -->
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M16 8A8 8 0 100 8a8 8 0 0016 0z" fill="#1877F2"/>
+              <path d="M11.12 10.22l.37-2.4H9.18V6.27c0-.66.32-1.3 1.36-1.3h1.05V2.94s-.95-.16-1.86-.16c-1.9 0-3.14 1.15-3.14 3.23v1.81H4.49v2.4H6.6V16a8.1 8.1 0 002.58 0v-5.78h1.94z" fill="white"/>
+            </svg>
+            Facebook
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <p class="footer-note">Serving Los Angeles, CA</p>
+
+  </div>
+
+  <script>
+    function togglePassword() {
+      const input = document.getElementById('password');
+      const btn = document.querySelector('.password-toggle');
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = 'hide';
+      } else {
+        input.type = 'password';
+        btn.textContent = 'show';
+      }
+    }
+  </script>
+</body>
+</html>
