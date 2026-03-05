@@ -1,0 +1,23 @@
+[build]
+  publish = "."
+
+# Clean URL redirects (serve sub-pages at pretty paths)
+[[redirects]]
+  from = "/pricing"
+  to   = "/scr/html/pricing.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to   = "/scr/html/help.html"
+  status = 200
+
+[[redirects]]
+  from = "/schedule"
+  to   = "/scr/html/schedule.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to   = "/scr/html/contact.html"
+  status = 200
