@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcera — FAQ</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-faq">
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Arcera</a>
+    <div class="nav-links">
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="help.html" class="nav-link">FAQ</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <button class="nav-signin" id="auth-trigger">Sign In</button>
+      <a href="schedule.html" class="nav-cta">Schedule a Call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="faq-hero">
+    <div class="faq-hero-inner">
+      <p class="faq-hero-eyebrow">Common Questions</p>
+      <h1 class="faq-hero-title">We've heard these before.</h1>
+      <p class="faq-hero-sub">Straightforward answers to the questions most homeowners ask before they sign up.</p>
+    </div>
+  </div>
+
+  <!-- FAQ CONTENT -->
+  <div class="faq-content">
+
+    <div class="accordion-item open">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <span class="trigger-left">
+          <span class="item-num">01</span>
+          <span class="accordion-question">"My insurance agent says I'm fully covered."</span>
+        </span>
+        <span class="accordion-icon">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </button>
+      <div class="accordion-body">
+        <p class="accordion-answer">And they're probably right — on paper. Coverage and claims are two different things. An agent sells the policy; we help you collect on it. The question isn't "am I covered?" — it's "how painful will it be to prove it?" We remove the pain.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <span class="trigger-left">
+          <span class="item-num">02</span>
+          <span class="accordion-question">"Can't I just take photos on my phone?"</span>
+        </span>
+        <span class="accordion-icon">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </button>
+      <div class="accordion-body">
+        <p class="accordion-answer">You absolutely can. The difference is twofold: First, we document the right things — serial numbers, provenance details — that insurers actually require. Second, if a disaster hits, you're dealing with trauma. We deal with the insurance company. You don't want to be negotiating with an adjuster from a hotel room, trying to remember what was in your closet. We become your proxy.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <span class="trigger-left">
+          <span class="item-num">03</span>
+          <span class="accordion-question">"It seems expensive."</span>
+        </span>
+        <span class="accordion-icon">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </button>
+      <div class="accordion-body">
+        <p class="accordion-answer">This is an investment. A single missing line item on a Proof of Loss can cost ten times our annual fee. What we're really selling is a guarantee that you won't leave money on the table at your most vulnerable moment. If it's about value: what is peace of mind worth to you?</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STILL NEED HELP -->
+  <div class="help-footer">
+    <div class="help-footer-inner">
+      <p class="help-footer-eyebrow">Still have questions?</p>
+      <h2 class="help-footer-title">Talk to us.</h2>
+      <p class="help-footer-sub">We'll follow up within one business day. Or lock in a time on our calendar now — no commitment required.</p>
+      <div class="help-actions">
+        <a href="schedule.html" class="help-btn help-btn-gold"><span>Schedule a Call</span></a>
+        <a href="contact.html" class="help-btn help-btn-ghost"><span>Send a Message</span></a>
+      </div>
+      <p class="faq-footer-service-note">Currently serving Los Angeles homes only</p>
+    </div>
+  </div>
+
+  <script>
+    function toggle(trigger) {
+      const item = trigger.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../function/login.js"></script>
+
+</body>
+</html>

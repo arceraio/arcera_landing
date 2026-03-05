@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcera — Schedule a Call</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-schedule">
+
+  <nav>
+    <a href="index.html" class="nav-logo">Arcera</a>
+    <div class="nav-links">
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="help.html" class="nav-link">FAQ</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <button class="nav-signin" id="auth-trigger">Sign In</button>
+      <a href="schedule.html" class="nav-cta">Schedule a Call</a>
+    </div>
+  </nav>
+
+  <div class="schedule-layout">
+
+    <!-- LEFT -->
+    <div class="schedule-left">
+      <div class="left-top">
+        <p class="schedule-eyebrow">Strategy Call</p>
+        <h1 class="schedule-title">Schedule Your<br/>Strategy Call</h1>
+        <p class="schedule-subtitle">30 minutes. No obligation. We'll walk you through how Arcera works and answer any questions about your specific home.</p>
+
+        <div class="expect">
+          <p class="expect-label">What we'll cover</p>
+          <ul class="expect-list">
+            <li><span class="expect-dot"></span>How the documentation walkthrough works</li>
+            <li><span class="expect-dot"></span>Setting up your YOLO AI recognition account</li>
+            <li><span class="expect-dot"></span>Meeting your dedicated adjuster contact</li>
+            <li><span class="expect-dot"></span>Pricing and next steps — no pressure</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="schedule-left-bottom">
+        <div class="schedule-rule"></div>
+        <p class="la-note">Arcera currently serves Los Angeles homes only.<br/>If you're outside LA, <a href="contact.html" style="color:rgba(201,168,76,0.5);text-decoration:none;">join our waitlist →</a></p>
+      </div>
+    </div>
+
+    <!-- RIGHT — Calendar embed -->
+    <div class="schedule-right">
+      <div class="calendar-header">
+        <p class="cal-label">Select a time</p>
+        <h2 class="cal-title">30-Minute Onboarding &amp; Strategy</h2>
+      </div>
+
+      <div class="calendly-wrap">
+
+        <!--
+          TO ENABLE CALENDLY:
+          1. Replace YOUR_CALENDLY_USERNAME below with your Calendly link
+          2. Remove the .calendly-placeholder div
+          3. Uncomment the script tag at the bottom
+        -->
+
+        <div
+          class="calendly-inline-widget"
+          data-url="https://calendly.com/arcera-support-0vld/30min?hide_gdpr_banner=1&primary_color=C9A84C"
+        ></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../function/login.js"></script>
+
+</body>
+</html>
