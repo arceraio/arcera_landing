@@ -132,7 +132,7 @@ Beneath nav (subtle): *"Currently serving Los Angeles, CA"*
 
 *Story 1 — Pacific Palisades*
 - Label: "Pacific Palisades" (small caps, gold)
-- Narrative: A client — successful, frequently traveling — signed up primarily for the YOLO AI recognition tool so his wife would have a record of everything while he was away. Four months later, a pipe burst in the wine cellar. The damage wasn't catastrophic — but it was significant. About $80,000 in wine and custom millwork. Because they had completed an Arcera walkthrough three weeks prior, they had timestamped video of the cellar and a complete inventory. The insurance company asked for proof of loss. They hit play. The claim was approved in 7 days. The national average is 45.
+- Narrative: A client — successful, frequently traveling — signed up primarily for the Arcera AI recognition tool so his wife would have a record of everything while he was away. Four months later, a pipe burst in the wine cellar. The damage wasn't catastrophic — but it was significant. About $80,000 in wine and custom millwork. Because they had completed an Arcera walkthrough three weeks prior, they had timestamped video of the cellar and a complete inventory. The insurance company asked for proof of loss. They hit play. The claim was approved in 7 days. The national average is 45.
 - Pull quote (large serif): "I didn't buy Arcera for the insurance payout. I bought it for the trust that Arcera will have my back."
 - Outcome row: $80k recovered · 7-day approval · 0 receipts required
 
@@ -145,13 +145,13 @@ Beneath nav (subtle): *"Currently serving Los Angeles, CA"*
 **Level 4 — How It Works**
 Three-column card layout (minimal, clean):
 1. **Document** — A 90-minute in-person AI-assisted walkthrough with the Arcera team. Serial numbers, provenance, high-value item inventory. We know what insurers actually require.
-2. **Store & Monitor** — Your YOLO AI recognition account. Annual renewal walkthrough. Secure, timestamped documentation — updated as your home evolves.
+2. **Store & Monitor** — Your Arcera AI recognition account. Annual renewal walkthrough. Secure, timestamped documentation — updated as your home evolves.
 3. **Defend** — Access to our vetted public adjuster network. California caps adjusters at 15% of settlement. Arcera clients pay 10%. You pay only if they increase your payout.
 
 **Level 5 — CTA (No Pricing Here)**
 - Full-width dark navy block
 - Headline: "Take this off your plate."
-- Sub: "Schedule your free 30-minute Onboarding & Strategy call. We'll walk you through documentation, set up your YOLO account, and assign your dedicated adjuster contact. No pressure. No commitment."
+- Sub: "Schedule your free 30-minute Onboarding & Strategy call. We'll walk you through documentation, set up your Arcera account, and assign your dedicated adjuster contact. No pressure. No commitment."
 - Primary: "Schedule a Call" → /schedule (gold)
 - Secondary: "See Pricing" → /pricing (ghost)
 - Micro-copy: "Arcera currently serves Los Angeles homes only."
@@ -162,7 +162,7 @@ Three-column card layout (minimal, clean):
 
 Full transparent breakdown:
 - **Onboarding**: $3,500 + $30 per documented high-value item
-- **Monthly subscription**: documentation maintenance, YOLO account, annual walkthrough, preferred adjuster access
+- **Monthly subscription**: documentation maintenance, Arcera account, annual walkthrough, preferred adjuster access
 - **Adjuster fee**: 10% of final settlement (vs. California cap of 15%) — paid at close only if they win
 - Small print: "Partial payment upfront. Remainder due at job completion."
 - CTA: "Ready to get started?" → "Schedule a Call" → /schedule

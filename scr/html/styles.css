@@ -16,6 +16,7 @@
   --navy:       #0D1B2A;
   --gold:       #C9A84C;
   --gold-hover: #dbb95e;
+  --gold-dark:  #8A6D1D; /* WCAG AA on cream bg (#F9F7F4), ~5:1 contrast */
   --body:       #2C2C2C;
   --muted:      #6B7280;
   --divider:    #E8E4DF;
@@ -81,7 +82,7 @@ body.page-signin { background: var(--navy); }
 .story-narrative, .left-body, .schedule-subtitle,
 .faq-hero-sub, .pricing-subtitle, .how-card-body,
 .how-sub, .post-body, .help-footer-sub,
-.accordion-answer, .how-card-detail {
+.accordion-answer {
   font-weight: 300;
   line-height: 1.75;
 }
@@ -111,19 +112,23 @@ body.page-signin { background: var(--navy); }
 .pricing-eyebrow, .left-eyebrow, .schedule-eyebrow,
 .faq-hero-eyebrow, .hero-context-eyebrow, .help-footer-eyebrow,
 .form-header-label, .cal-label, .story-location {
-  font-size: 9px;
-  font-weight: 300;
+  font-size: 12.5px;
+  font-weight: 500;
   letter-spacing: 0.3em;
-  color: var(--gold);
+  color: var(--gold-dark); /* dark gold — passes WCAG AA on cream bg */
 }
+/* Eyebrows on dark/navy backgrounds get the lighter gold back */
+.hero-eyebrow, .cta-eyebrow,
+.faq-hero-eyebrow, .help-footer-eyebrow,
+.story-location { color: #D8B96A; }
 /* Individual eyebrow overrides */
 .pricing-eyebrow, .left-eyebrow,
-.schedule-eyebrow, .faq-hero-eyebrow { font-size: 9.5px; }
+.schedule-eyebrow, .faq-hero-eyebrow { font-size: 12.5px; }
 .faq-hero-eyebrow  { letter-spacing: 0.28em; }
 .cta-eyebrow       { letter-spacing: 0.32em; }
-.form-header-label { font-weight: 400; letter-spacing: 0.24em; }
-.cal-label         { font-weight: 400; letter-spacing: 0.22em; }
-.help-footer-eyebrow { font-weight: 400; letter-spacing: 0.28em; }
+.form-header-label { font-weight: 500; letter-spacing: 0.24em; }
+.cal-label         { font-weight: 500; letter-spacing: 0.22em; }
+.help-footer-eyebrow { font-weight: 500; letter-spacing: 0.28em; }
 
 /* ── Flex icon boxes ── */
 .how-icon, .check-mark, .contact-icon,
@@ -698,12 +703,53 @@ footer,
 /* .gap-body weight/line-height from section 5 */
 .gap-body { font-size: 15.5px; color: var(--muted); max-width: 58ch; align-self: center; }
 
+/* Poetic intro block */
+.gap-intro { max-width: 52ch; display: flex; flex-direction: column; }
+
+/* Default: tight — lines within the same thought sit close */
+.gap-intro-line {
+  font-size: 15px;
+  font-weight: 400;
+  color: #595959;
+  line-height: 1.65;
+  margin-bottom: 0.18em;
+}
+
+/* "Between them sits…" — pause after the couplet, tight before Proof */
+.gap-intro-setup {
+  margin-top: 1.1em;
+  margin-bottom: 0.15em;
+}
+
+/* "Proof." — the dramatic drop */
+.gap-intro-proof {
+  font-family: var(--font-serif);
+  font-size: 52px;
+  font-weight: 600;
+  color: #8A6D1D;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  margin: 0.2em 0 0.8em;
+}
+
+/* "Arcera exists in that gap." — resolution, separated from the pair above */
+.gap-intro-close {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--body);
+  line-height: 1.5;
+  margin-top: 1em;
+  letter-spacing: 0.01em;
+}
+
 /* Comparison table */
 .comparison { margin-top: 64px; border-top: 1px solid rgba(13,27,42,0.1); }
 .comparison-header { display: grid; grid-template-columns: 1fr 1fr; }
-.comparison-col-label { padding: 14px 28px; font-size: 9px; font-weight: 400; letter-spacing: 0.24em; }
-.comparison-col-label.agent  { color: var(--muted); border-right: 1px solid var(--divider); border-bottom: 1px solid var(--divider); }
-.comparison-col-label.arcera { color: var(--gold); background: rgba(201,168,76,0.05); border-bottom: 1px solid rgba(201,168,76,0.25); border-left: 2px solid rgba(201,168,76,0.35); padding-left: 32px; }
+.comparison-col-label { padding: 16px 28px; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+.comparison-col-label.agent  { color: var(--body); border-right: 1px solid var(--divider); border-bottom: 1px solid var(--divider); }
+.comparison-col-label.arcera { color: var(--gold); font-size: 12px; background: rgba(201,168,76,0.07); border-bottom: 2px solid var(--gold); border-left: 2px solid rgba(201,168,76,0.35); padding-left: 32px; }
 
 .comparison-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--divider); transition: background 0.2s; }
 .comparison-row:hover { background: rgba(201,168,76,0.03); }
@@ -762,8 +808,8 @@ footer,
 .story:nth-child(2) .story-visual { order: 1; }
 .story-visual-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
 
-.story-1-bg { background: #070f18; }
-.story-2-bg { background: #060e17; }
+.story-1-bg { }
+.story-2-bg { }
 .story-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .story-photo-overlay { position: absolute; inset: 0; background: transparent; z-index: 1; }
 .story-num  { font-family: var(--font-serif); font-weight: 300; font-size: 160px; color: rgba(201,168,76,0.18); line-height: 1; user-select: none; pointer-events: none; position: relative; z-index: 2; }
@@ -801,7 +847,16 @@ footer,
 .how-card-body { font-size: 13.5px; color: var(--muted); max-width: 65ch; margin-bottom: 28px; flex: 1; }
 
 /* .how-card-detail weight/line-height from section 5 */
-.how-card-detail { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+.how-card-detail { font-size: 11.5px; font-weight: 600; color: var(--navy); letter-spacing: 0.12em; }
+.how-card-detail--link {
+  display: inline-block;
+  text-decoration: none;
+  background: rgba(13, 27, 42, 0.05);
+  border-radius: 4px;
+  padding: 4px 10px;
+  transition: background 0.2s ease;
+}
+.how-card-detail--link:hover { background: rgba(13, 27, 42, 0.1); }
 
 /* .how-icon flex from section 5 */
 .how-icon { width: 40px; height: 40px; border: 1px solid var(--divider); margin-bottom: 24px; color: var(--gold); transition: border-color 0.3s; }
@@ -848,7 +903,8 @@ footer,
 .cta-heading { font-size: clamp(36px, 5vw, 56px); color: var(--bg); letter-spacing: 0.02em; line-height: 1.08; margin-bottom: 20px; }
 
 /* .cta-body weight/line-height from section 5 */
-.cta-body { font-size: 15px; color: rgba(249,247,244,0.68); max-width: 65ch; margin-bottom: 48px; }
+.cta-body { font-size: 15px; color: rgba(249,247,244,0.68); max-width: 65ch; margin-bottom: 20px; }
+.cta-body--closing { font-size: 17px; font-weight: 500; color: rgba(249,247,244,0.92); letter-spacing: 0.01em; margin-bottom: 48px; }
 
 .cta-actions { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
 .cta-note    { font-size: 11px; font-weight: 300; color: rgba(249,247,244,0.45); letter-spacing: 0.12em; }
