@@ -6,7 +6,7 @@
           '<div class="footer-brand">',
             '<a href="/" class="footer-logo">Arcera</a>',
             '<span class="footer-brand-sep" aria-hidden="true"></span>',
-            '<p class="footer-tagline">Be prepared, stay organized, and thrive.</p>',
+            '<p class="footer-tagline">Trusted in uncertainty.</p>',
           '</div>',
           '<div class="footer-links">',
             '<a href="/pricing" class="footer-link">Pricing</a>',
