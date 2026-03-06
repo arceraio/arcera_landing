@@ -50,7 +50,7 @@
     '</nav>',
 
     /* ── Service area sub-bar ── */
-    '<div class="nav-sub">',
+    '<div class="nav-sub' + (active === 'pricing' ? ' nav-sub--hidden' : '') + '">',
       '<span class="nav-sub-label">Currently serving</span>',
       '<span class="nav-sub-city">Los Angeles, CA</span>',
       '<span class="nav-sub-neighborhoods">&ensp;&middot;&ensp; Palisades &ensp;&middot;&ensp; Bel Air &ensp;&middot;&ensp; Brentwood &ensp;&middot;&ensp; Hancock Park &ensp;&middot;&ensp; Malibu &ensp;&middot;&ensp; Calabasas</span>',
