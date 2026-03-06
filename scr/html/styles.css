@@ -1767,8 +1767,9 @@ body.page-header .nav-link.active::after { width: 100%; }
   position: relative;
   border-left: 2px solid transparent;
   transition: border-left-color 0.22s;
-  opacity: 0;
-  transform: translateX(-18px);
+  /* Visible by default — animation is enhancement only */
+  opacity: 1;
+  transform: translateX(0);
 }
 /* Hairline between rows */
 .drawer-link::after {
@@ -1788,15 +1789,16 @@ body.page-header .nav-link.active::after { width: 100%; }
   background: linear-gradient(to right, rgba(201,168,76,0.06) 0%, transparent 100%);
 }
 
-/* Staggered entrance — fires each time drawer opens */
-.drawer.open .drawer-link { animation: drawerLinkIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+/* Staggered entrance — cosmetic only; links are visible even if animation fails */
+.drawer.open .drawer-link { animation: drawerLinkIn 0.5s cubic-bezier(0.16,1,0.3,1) both; }
 .drawer.open .drawer-link:nth-child(1) { animation-delay: 0.06s; }
 .drawer.open .drawer-link:nth-child(2) { animation-delay: 0.13s; }
 .drawer.open .drawer-link:nth-child(3) { animation-delay: 0.20s; }
 .drawer.open .drawer-link:nth-child(4) { animation-delay: 0.27s; }
 
 @keyframes drawerLinkIn {
-  to { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 .drawer-link-icon {
@@ -1839,10 +1841,9 @@ body.page-header .nav-link.active::after { width: 100%; }
   border-top: 1px solid rgba(255,255,255,0.055);
   position: relative; z-index: 1;
   flex-shrink: 0;
-  opacity: 0;
 }
 .drawer.open .drawer-cta-section {
-  animation: drawerFadeUp 0.42s 0.34s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: drawerFadeUp 0.42s 0.34s cubic-bezier(0.16,1,0.3,1) both;
 }
 .drawer-cta {
   display: flex;
@@ -1879,10 +1880,9 @@ body.page-header .nav-link.active::after { width: 100%; }
   gap: 7px;
   position: relative; z-index: 1;
   flex-shrink: 0;
-  opacity: 0;
 }
 .drawer.open .drawer-auth {
-  animation: drawerFadeUp 0.42s 0.41s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: drawerFadeUp 0.42s 0.41s cubic-bezier(0.16,1,0.3,1) both;
 }
 
 @keyframes drawerFadeUp {
