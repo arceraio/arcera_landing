@@ -52,28 +52,72 @@
         <h2 class="cal-title">30-Minute Onboarding &amp; Strategy</h2>
       </div>
 
-      <div class="calendly-wrap">
+      <div class="calendly-wrap" id="calendly-wrap">
 
-        <!--
-          TO ENABLE CALENDLY:
-          1. Replace YOUR_CALENDLY_USERNAME below with your Calendly link
-          2. Remove the .calendly-placeholder div
-          3. Uncomment the script tag at the bottom
-        -->
-
+        <!-- Widget injected by JS when analytics consent is granted -->
         <div
           class="calendly-inline-widget"
+          id="calendly-widget"
           data-url="https://calendly.com/arcera-support-0vld/30min?hide_gdpr_banner=1&primary_color=C9A84C"
+          style="display:none"
         ></div>
+
+        <!-- Shown when no analytics consent -->
+        <div class="calendly-consent" id="calendly-consent">
+          <p class="calendly-consent-text">The scheduling widget requires analytics consent to load.</p>
+          <div class="calendly-consent-actions">
+            <button class="calendly-consent-btn" onclick="window.openPrivacyModal()">Open Privacy Settings</button>
+            <span class="calendly-consent-or">or</span>
+            <a href="mailto:support@arcera.io" class="calendly-consent-email">Email us to schedule directly →</a>
+          </div>
+        </div>
 
       </div>
     </div>
 
   </div>
 
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <div id="site-footer"></div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../function/login.js"></script>
+  <script src="../function/footer.js"></script>
+  <script src="../function/privacy-modal.js"></script>
+  <script>
+    (function () {
+      function loadCalendly() {
+        var widget = document.getElementById('calendly-widget');
+        var consent = document.getElementById('calendly-consent');
+        if (widget) widget.style.display = '';
+        if (consent) consent.style.display = 'none';
+        if (!document.querySelector('script[src*="calendly"]')) {
+          var s = document.createElement('script');
+          s.src = 'https://assets.calendly.com/assets/external/widget.js';
+          s.async = true;
+          document.head.appendChild(s);
+        }
+      }
+
+      function checkConsent() {
+        try {
+          var prefs = JSON.parse(localStorage.getItem('arcera_privacy_prefs') || '{}');
+          if (prefs.analytics) loadCalendly();
+        } catch (_) {}
+      }
+
+      // Check on page load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkConsent);
+      } else {
+        checkConsent();
+      }
+
+      // React immediately when user confirms the modal
+      window.addEventListener('arcera:privacy-saved', function (e) {
+        if (e.detail && e.detail.analytics) loadCalendly();
+      });
+    })();
+  </script>
 
 </body>
 </html>

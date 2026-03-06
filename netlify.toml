@@ -21,3 +21,18 @@
   from = "/contact"
   to   = "/scr/html/contact.html"
   status = 200
+
+[[redirects]]
+  from = "/terms"
+  to   = "/scr/html/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to   = "/scr/html/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy-choices"
+  to   = "/scr/html/privacy-choices.html"
+  status = 200
