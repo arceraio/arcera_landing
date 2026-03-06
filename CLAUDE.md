@@ -215,7 +215,7 @@ CTA at bottom: "Still have questions? Talk to us." → /contact
 - Logo + tagline: "Be prepared, stay organized, and thrive."
 - Links: Pricing · FAQ · Schedule a Call · Contact
 - Micro-copy: "Currently serving Los Angeles, CA"
-- Contact: support@arcera.io · 925-708-6664
+- Contact: support@arcera.io · (866) 5AR-CERA
 
 ---
 

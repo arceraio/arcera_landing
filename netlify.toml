@@ -36,3 +36,8 @@
   from = "/privacy-choices"
   to   = "/scr/html/privacy-choices.html"
   status = 200
+
+[[redirects]]
+  from = "/index"
+  to   = "index.html"
+  status = 200

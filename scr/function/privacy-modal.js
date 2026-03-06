@@ -43,6 +43,9 @@
 
         // Action buttons
         '<div class="pm-actions">',
+          '<button class="pm-action-btn pm-action-btn--accept" id="pm-accept-cookies">',
+            'Allow Analytics &amp; Load Scheduling Widget',
+          '</button>',
           '<button class="pm-action-btn" id="pm-opt-cookies">',
             'Opt Out of Non-Essential Cookies and Other Trackers',
           '</button>',
@@ -57,6 +60,16 @@
     document.body.appendChild(overlay);
 
     // ── Wire up events ──────────────────────────────────────────────────────
+
+    var acceptBtn = document.getElementById('pm-accept-cookies');
+    acceptBtn.addEventListener('click', function () {
+      savePrefs({ analytics: true });
+      window.dispatchEvent(new CustomEvent('arcera:privacy-saved', { detail: { analytics: true } }));
+      acceptBtn.textContent = '\u2713 Analytics Enabled';
+      acceptBtn.classList.add('pm-action-btn--saved');
+      acceptBtn.disabled = true;
+      setTimeout(closeModal, 1400);
+    });
 
     var cookieBtn = document.getElementById('pm-opt-cookies');
     cookieBtn.addEventListener('click', function () {
@@ -85,7 +98,13 @@
     buildModal();
     var overlay = document.getElementById('pm-overlay');
 
-    // Reset cookie button state in case modal was already built
+    // Reset button states in case modal was already built
+    var acceptBtn = document.getElementById('pm-accept-cookies');
+    if (acceptBtn) {
+      acceptBtn.textContent = 'Allow Analytics \u0026 Load Scheduling Widget';
+      acceptBtn.classList.remove('pm-action-btn--saved');
+      acceptBtn.disabled = false;
+    }
     var cookieBtn = document.getElementById('pm-opt-cookies');
     if (cookieBtn) {
       cookieBtn.textContent = 'Opt Out of Non-Essential Cookies and Other Trackers';

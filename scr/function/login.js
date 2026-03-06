@@ -196,6 +196,9 @@
     if (existing) existing.remove();
     closeDropdown();
 
+    /* ── Drawer auth section ── */
+    const drawerAuth = document.getElementById('drawer-auth');
+
     if (user) {
       if (trigger) trigger.style.display = 'none';
       if (cta)     cta.style.display     = 'none';
@@ -223,9 +226,52 @@
           if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'true');
         }
       });
+
+      /* Drawer: signed in → Dashboard + Log Out */
+      if (drawerAuth) {
+        drawerAuth.innerHTML = `
+          <a href="${APP_URL}" class="drawer-auth-btn drawer-auth-btn--dashboard">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="5" height="5" rx=".8" stroke="currentColor" stroke-width="1.1"/>
+              <rect x="8" y="1" width="5" height="5" rx=".8" stroke="currentColor" stroke-width="1.1"/>
+              <rect x="1" y="8" width="5" height="5" rx=".8" stroke="currentColor" stroke-width="1.1"/>
+              <rect x="8" y="8" width="5" height="5" rx=".8" stroke="currentColor" stroke-width="1.1"/>
+            </svg>
+            Dashboard
+          </a>
+          <button class="drawer-auth-btn drawer-auth-btn--logout" id="drawer-logout-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M5.5 2H3a1 1 0 00-1 1v8a1 1 0 001 1h2.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+              <path d="M9.5 10l3-3-3-3M12.5 7H5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Log Out
+          </button>
+        `;
+        document.getElementById('drawer-logout-btn').addEventListener('click', async () => {
+          window.closeDrawer && window.closeDrawer();
+          await sb.auth.signOut();
+        });
+      }
+
     } else {
       if (trigger) trigger.style.display = '';
       if (cta)     cta.style.display     = '';
+
+      /* Drawer: signed out → Sign In */
+      if (drawerAuth) {
+        drawerAuth.innerHTML = `
+          <button class="drawer-auth-btn" id="drawer-signin-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <circle cx="7" cy="4.5" r="2.5" stroke="currentColor" stroke-width="1.1"/>
+              <path d="M1.5 12.5c0-3.04 2.46-5.5 5.5-5.5s5.5 2.46 5.5 5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+            </svg>
+            Sign In
+          </button>
+        `;
+        document.getElementById('drawer-signin-btn').addEventListener('click', () => {
+          window.location.href = APP_URL;
+        });
+      }
     }
   }
 

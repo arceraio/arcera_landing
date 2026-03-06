@@ -9,25 +9,15 @@
 </head>
 <body class="page-home">
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo">Arcera</a>
-    <div class="nav-links">
-      <a href="scr/html/pricing.html" class="nav-link">Pricing</a>
-      <a href="scr/html/help.html" class="nav-link">FAQ</a>
-      <a href="scr/html/contact.html" class="nav-link">Contact</a>
-      <button class="nav-signin" id="auth-trigger">Sign In</button>
-      <a href="scr/html/schedule.html" class="nav-cta">Schedule a Call</a>
-    </div>
-  </nav>
-  <div class="nav-sub"><span class="nav-sub-label">Currently serving</span><span class="nav-sub-neighborhoods">Los Angeles, CA &ensp;·&ensp; Palisades &ensp;·&ensp; Bel Air &ensp;·&ensp; Brentwood &ensp;·&ensp; Hancock Park &ensp;·&ensp; Malibu &ensp;·&ensp; Calabasas</span></div>
+  <!-- NAV (injected by nav.js) -->
+  <div id="site-nav"></div>
 
   <!-- ── HERO ── -->
   <section class="hero">
     <div class="hero-left">
       <p class="hero-eyebrow">Home Documentation &amp; Claims Advocacy</p>
       <p class="hero-kicker">Before disaster forces you to prove what you own.</p>
-      <h1 class="hero-h1">Do you feel safe?<br/><em>In a world of uncertainty.<br/></em></h1>
+      <h1 class="hero-h1">Your home is documented.<br/><em>Your family is protected.</em></h1>
       <p class="hero-sub">Arcera combines AI-powered home documentation with vetted claims advocacy — so when disaster strikes, your proof is already done.</p>
       <div class="hero-actions">
         <a href="scr/html/schedule.html" class="btn-primary"><span>Schedule Your Strategy Call</span></a>
@@ -194,11 +184,10 @@
           </div>
           <p class="how-step">03 — Defend</p>
           <h3 class="how-card-title">Claims Advocacy</h3>
-          <p class="how-card-body">Access to our vetted public adjuster network. California caps adjusters at 15% of settlement. Arcera clients pay 10%. You pay only if they increase your payout.</p>
-          <p class="how-card-detail">10% of settlement — paid at close only</p>
+          <p class="how-card-body">Access to our vetted public adjuster network. You pay only if they increase your payout — never upfront.</p>
           <div class="defend-badge">
             <span class="defend-badge-dot"></span>
-            <span class="defend-badge-text">10% vs. 15% CA cap &nbsp;·&nbsp; Paid only if they win</span>
+            <span class="defend-badge-text">10% fee (vs. 15% CA cap) &nbsp;·&nbsp; Paid only if they win</span>
           </div>
         </div>
       </div>
@@ -269,6 +258,7 @@
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="scr/function/nav.js"></script>
   <script src="scr/function/login.js"></script>
   <script src="scr/function/footer.js"></script>
   <script src="scr/function/privacy-modal.js"></script>
