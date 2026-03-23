@@ -5,7 +5,7 @@
       "variation": 1,
       "platform": "facebook",
       "content": "## Post Variation 1: Pain Point Hook\n**Angle**: Insurance claim horror story\n\n> \u26a0\ufe0f Homeowners: This is why I document everything now.\n> \n> A client in Pacific Palisades had $80k in wine collection damage. Insurance offered $12k.\n> \n> Why? No documentation. No proof. No fight.\n> \n> She eventually got $80k \u2014 but it took 8 months of battles.\n> \n> Don't be her. Document your home today.\n> \n> \ud83d\udd17 arcera-digital.netlify.app\n> \n> #Homeowners #InsuranceClaims #LAHomeowners #ProtectYourHome\n\n---\n",
-      "status": "draft",
+      "status": "posted",
       "scheduled_at": null,
       "created_at": "2026-03-23T14:11:11.488221",
       "metrics": {
@@ -13,14 +13,16 @@
         "engagements": 0,
         "clicks": 0,
         "ctr": 0
-      }
+      },
+      "facebook_id": "824897250699270_122126972445022043",
+      "posted_at": "2026-03-23T15:39:47.601885"
     },
     {
       "id": 2,
       "variation": 2,
       "platform": "facebook",
       "content": "## Post Variation 2: Simple Direct\n**Angle**: Just the facts\n\n> Your home is your biggest asset.\n> \n> But most homeowners have zero documentation of what's inside it.\n> \n> \ud83d\udcf8 Photos? Random.\n> \ud83d\udccb Serial numbers? Nowhere.\n> \ud83d\udcb0 Value estimates? Guesses.\n> \n> Arcera Digital gives you a complete documentation system \u2014 one-time $297, no monthly fees.\n> \n> 30 minutes now = thousands saved later.\n> \n> \ud83d\udc49 arcera-digital.netlify.app\n> \n> #HomeDocumentation #LA #HomeownerTips\n\n---\n",
-      "status": "draft",
+      "status": "posted",
       "scheduled_at": null,
       "created_at": "2026-03-23T14:11:14.234535",
       "metrics": {
@@ -28,14 +30,16 @@
         "engagements": 0,
         "clicks": 0,
         "ctr": 0
-      }
+      },
+      "facebook_id": "824897250699270_122126972475022043",
+      "posted_at": "2026-03-23T15:40:00.486788"
     },
     {
       "id": 3,
       "variation": 3,
       "platform": "facebook",
       "content": "## Post Variation 3: Fear + Empowerment\n**Angle**: Don't let this be you\n\n> The #1 reason insurance claims get underpaid?\n> \n> Homeowners can't prove what they owned.\n> \n> It's not about being covered. It's about being able to prove it.\n> \n> Arcera Digital helps you document every room, every item, every detail \u2014 in under 30 minutes.\n> \n> When disaster strikes, you'll have the proof you need.\n> \n> Get protected \u2192 arcera-digital.netlify.app\n> \n> \ud83d\udcb0 One-time $297. No monthly. Ever.\n> \n> #InsuranceTips #HomeProtection #LARealEstate\n\n---\n",
-      "status": "draft",
+      "status": "posted",
       "scheduled_at": null,
       "created_at": "2026-03-23T14:11:14.263582",
       "metrics": {
@@ -43,14 +47,16 @@
         "engagements": 0,
         "clicks": 0,
         "ctr": 0
-      }
+      },
+      "facebook_id": "824897250699270_122126972487022043",
+      "posted_at": "2026-03-23T15:40:02.024800"
     },
     {
       "id": 4,
       "variation": 4,
       "platform": "facebook",
       "content": "## Post Variation 4: Social Proof\n**Angle**: Real results\n\n> We helped a homeowner in Brentwood document their kitchen renovation.\n> \n> When a pipe burst and caused $95k in damage?\n> \n> Their complete documentation = $95k approved. No fight. No hassle.\n> \n> Documentation isn't about being paranoid. It's about being prepared.\n> \n> \ud83d\udc49 arcera-digital.netlify.app\n> \n> #RealResults #HomeInsurance #ClaimApproved\n\n---\n",
-      "status": "draft",
+      "status": "posted",
       "scheduled_at": null,
       "created_at": "2026-03-23T14:11:14.282575",
       "metrics": {
@@ -58,7 +64,9 @@
         "engagements": 0,
         "clicks": 0,
         "ctr": 0
-      }
+      },
+      "facebook_id": "824897250699270_122126972493022043",
+      "posted_at": "2026-03-23T15:40:05.403993"
     }
   ],
   "scheduled": []

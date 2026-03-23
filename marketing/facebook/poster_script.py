@@ -12,6 +12,8 @@ Usage:
 import json
 import os
 import sys
+import urllib.request
+import urllib.parse
 from datetime import datetime
 from pathlib import Path
 
@@ -19,6 +21,52 @@ from pathlib import Path
 MARKETING_DIR = Path(__file__).parent.resolve()
 POSTS_FILE = MARKETING_DIR / "posts.json"
 VARIATIONS_FILE = MARKETING_DIR / "post-variations.md"
+
+def load_env():
+    """Load credentials from .env file"""
+    env_file = MARKETING_DIR / ".env"
+    if env_file.exists():
+        for line in env_file.read_text().strip().split('\n'):
+            if line and not line.startswith('#') and '=' in line:
+                k, v = line.split('=', 1)
+                os.environ[k.strip()] = v.strip()
+
+def get_page_token():
+    """Get Facebook page access token"""
+    load_env()
+    user_token = os.environ.get("FACEBOOK_USER_TOKEN")
+    page_id = os.environ.get("FACEBOOK_PAGE_ID")
+    
+    if not user_token or not page_id:
+        return None
+    
+    url = f"https://graph.facebook.com/v18.0/{page_id}?fields=access_token&access_token={user_token}"
+    try:
+        with urllib.request.urlopen(url) as r:
+            return json.loads(r.read().decode())['access_token']
+    except:
+        return None
+
+def post_to_facebook(message):
+    """Post a message to Facebook page"""
+    page_token = get_page_token()
+    if not page_token:
+        print("❌ No page token. Check .env file.")
+        return None
+    
+    page_id = os.environ.get("FACEBOOK_PAGE_ID")
+    url = f"https://graph.facebook.com/v18.0/{page_id}/feed"
+    data = {"message": message, "access_token": page_token}
+    
+    req = urllib.request.Request(url, data=urllib.parse.urlencode(data).encode(), method="POST")
+    try:
+        with urllib.request.urlopen(req) as r:
+            result = json.loads(r.read().decode())
+            print(f"✅ Posted! ID: {result.get('id')}")
+            return result.get('id')
+    except urllib.error.HTTPError as e:
+        print(f"❌ Error: {e.read().decode()}")
+        return None
 
 class FacebookPoster:
     def __init__(self):
@@ -168,6 +216,59 @@ def main():
         datetime_str = sys.argv[3].split("=")[1] if "--datetime" in sys.argv[3] else None
         if post_id and datetime_str:
             poster.schedule_post(post_id, datetime_str)
+    
+    elif command == "post":
+        # Get post ID from argument
+        post_id = None
+        for arg in sys.argv[2:]:
+            if "--post-id" in arg:
+                post_id = int(arg.split("=")[1]) if "=" in arg else int(arg.split("--post-id")[1].strip("-"))
+            elif arg.isdigit():
+                post_id = int(arg)
+        
+        if not post_id:
+            print("Usage: python3 poster_script.py post <post_id>")
+            return
+        
+        # Find the post
+        for post in poster.posts["posts"]:
+            if post["id"] == post_id:
+                # Extract just the content (strip variation header)
+                content = post.get("content", "")
+                if content.startswith("## Post Variation"):
+                    # Remove the header line
+                    lines = content.split('\n')
+                    content = '\n'.join(lines[2:])  # Skip first 2 lines (header + angle)
+                
+                # Post to Facebook
+                fb_id = post_to_facebook(content)
+                if fb_id:
+                    post["status"] = "posted"
+                    post["facebook_id"] = fb_id
+                    post["posted_at"] = datetime.now().isoformat()
+                    poster.save_posts()
+                return
+        
+        print(f"Post #{post_id} not found")
+    
+    elif command == "post-all":
+        # Post all draft posts
+        for post in poster.posts["posts"]:
+            if post["status"] == "draft":
+                content = post.get("content", "")
+                if content.startswith("## Post Variation"):
+                    lines = content.split('\n')
+                    content = '\n'.join(lines[2:])
+                
+                print(f"Posting #{post['id']}...", end=" ")
+                fb_id = post_to_facebook(content)
+                if fb_id:
+                    post["status"] = "posted"
+                    post["facebook_id"] = fb_id
+                    post["posted_at"] = datetime.now().isoformat()
+        
+        poster.save_posts()
+        print("Done!")
     
     else:
         print(__doc__)
