@@ -1,0 +1,257 @@
+<!-- Email Signup Component for Arcera Digital -->
+<!-- Can be embedded on landing page, Facebook landing page, or standalone -->
+
+<section class="email-signup" id="signup">
+  <div class="signup-container">
+    <div class="signup-content">
+      <h3 class="signup-title">Get Early Access & Tips</h3>
+      <p class="signup-subtitle">Join homeowners who've already documented their homes. Get tips, updates, and early access to new features.</p>
+      
+      <form class="signup-form" id="emailSignupForm" action="/api/signup" method="POST">
+        <div class="form-group">
+          <label for="email" class="sr-only">Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="your@email.com" 
+            required
+            class="signup-input"
+            autocomplete="email"
+          >
+          <button type="submit" class="signup-button">
+            <span>Get Early Access</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        
+        <p class="signup-disclaimer">We respect your privacy. Unsubscribe anytime.</p>
+        
+        <!-- Success/Error messages -->
+        <div class="signup-message success" id="signupSuccess" style="display: none;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 10l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>You're in! Check your inbox for next steps.</span>
+        </div>
+        
+        <div class="signup-message error" id="signupError" style="display: none;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M6 6l8 8M14 6l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Something went wrong. Please try again.</span>
+        </div>
+      </form>
+      
+      <!-- Social proof -->
+      <div class="signup-social-proof">
+        <span class="proof-number">2,400+</span>
+        <span class="proof-label">homeowners already signed up</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .email-signup {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #0a192f 0%, #132f4c 100%);
+  }
+  
+  .signup-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .signup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #f5f5dc;
+    margin-bottom: 1rem;
+  }
+  
+  .signup-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #a8b2c1;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  
+  .signup-form {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  
+  .signup-input {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    background: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: #0a192f;
+    transition: border-color 0.2s ease;
+  }
+  
+  .signup-input:focus {
+    outline: none;
+    border-color: #c9a227;
+  }
+  
+  .signup-input::placeholder {
+    color: #6b7a8f;
+  }
+  
+  .signup-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #c9a227;
+    color: #0a192f;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  
+  .signup-button:hover {
+    background: #ddb832;
+  }
+  
+  .signup-button:active {
+    transform: scale(0.98);
+  }
+  
+  .signup-disclaimer {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #6b7a8f;
+    margin-top: 0.75rem;
+  }
+  
+  .signup-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+  }
+  
+  .signup-message.success {
+    background: rgba(76, 175, 80, 0.15);
+    color: #4caf50;
+  }
+  
+  .signup-message.error {
+    background: rgba(244, 67, 54, 0.15);
+    color: #f44336;
+  }
+  
+  .signup-social-proof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .proof-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #c9a227;
+  }
+  
+  .proof-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #a8b2c1;
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  @media (max-width: 600px) {
+    .form-group {
+      flex-direction: column;
+    }
+    
+    .signup-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('emailSignupForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const form = e.target;
+    const email = form.email.value;
+    const successMsg = document.getElementById('signupSuccess');
+    const errorMsg = document.getElementById('signupError');
+    const button = form.querySelector('button');
+    
+    // Reset messages
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+    
+    // Disable button during submission
+    button.disabled = true;
+    button.textContent = 'Submitting...';
+    
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      
+      if (response.ok) {
+        successMsg.style.display = 'flex';
+        form.reset();
+      } else {
+        errorMsg.style.display = 'flex';
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      errorMsg.style.display = 'flex';
+    } finally {
+      button.disabled = false;
+      button.innerHTML = '<span>Get Early Access</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+  });
+</script>

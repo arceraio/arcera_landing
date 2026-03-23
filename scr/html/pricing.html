@@ -7,94 +7,232 @@
   <link rel="stylesheet" href="/scr/html/styles.css" />
 </head>
 <body class="page-pricing">
+
   <!-- NAV (injected by nav.js) -->
   <div id="site-nav"></div>
 
-  <div class="pricing-page">
+  <!-- HERO -->
+  <div class="faq-hero">
+    <div class="faq-hero-inner">
+      <p class="faq-hero-eyebrow">Simple, Transparent Pricing</p>
+      <h1 class="faq-hero-title">Protect Your Home Forever. No Monthly Fees.</h1>
+      <p class="faq-hero-sub">One-time payment. Lifetime protection. The professional-grade documentation system smart homeowners use.</p>
+    </div>
+  </div>
 
-    <header class="pricing-header">
-      <p class="pricing-eyebrow">Transparent Pricing</p>
-      <h1 class="pricing-title">One service. Three components.</h1>
-      <p class="pricing-subtitle">No hidden fees. The adjuster earns only when you do — and at a rate below the California cap.</p>
-    </header>
-
-    <div class="pricing-grid">
-
-      <!-- 01 — Documentation -->
-      <div class="pricing-card">
-        <p class="step-num">01 — Documentation</p>
-        <h2 class="tier-name">Onboarding</h2>
-        <p class="tier-sub">A single, thorough walkthrough to build your permanent record.</p>
-
-        <div class="price-block">
-          <div class="price"><sup>$</sup>2,390</div>
-          <p class="price-note">+ <strong>$30</strong> per documented high-value item</p>
+  <!-- PRICING TIERS -->
+  <div class="pricing-tiers-section">
+    <div class="pricing-tiers-inner">
+      
+      <!-- Free Tier -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <p class="tier-eyebrow">Tier</p>
+          <h2 class="tier-name">Free</h2>
+          <p class="tier-sub">Get started with the basics</p>
         </div>
-
-        <ul class="pricing-features">
-          <li><span class="feat-dot"></span>90-minute in-person AI-assisted walkthrough</li>
-          <li><span class="feat-dot"></span>Serial numbers, provenance &amp; condition records</li>
-          <li><span class="feat-dot"></span>Timestamped video of every documented room</li>
-          <li><span class="feat-dot"></span>Formatted to insurance industry standards</li>
+        <div class="tier-price">
+          <div class="tier-price-amount">$0</div>
+          <p class="tier-price-unit">Free forever</p>
+        </div>
+        <ul class="tier-features">
+          <li>Up to 3 rooms documented</li>
+          <li>Manual photo uploads</li>
+          <li>Basic cloud storage</li>
+          <li>Mobile app access</li>
         </ul>
-
-        <p class="small-print">Partial payment upfront. Remainder due at job completion.</p>
-        <a href="schedule.html" class="btn-card btn-ghost"><span>Schedule a Call</span></a>
+        <a href="schedule.html" class="btn-tier-primary">Start Free</a>
+        <p class="tier-note">Perfect for trying things out</p>
       </div>
 
-      <!-- 02 — Ongoing Protection (featured) -->
-      <div class="pricing-card featured">
-        <p class="step-num">02 — Ongoing</p>
-        <h2 class="tier-name">Protection</h2>
-        <p class="tier-sub">Your documentation stays current. Your adjuster is already assigned.</p>
-
-        <div class="price-block">
-          <div class="price" style="font-size:32px; padding-top:6px; letter-spacing:0.02em;">Monthly</div>
-          <p class="price-note">Subscription — contact us for current rate</p>
+      <!-- Pro Tier -->
+      <div class="tier-card tier-card--featured">
+        <div class="tier-featured-label">Most Popular</div>
+        <div class="tier-header">
+          <p class="tier-eyebrow">Tier</p>
+          <h2 class="tier-name">Pro</h2>
+          <p class="tier-sub">Complete protection for homeowners</p>
         </div>
-
-        <ul class="pricing-features">
-          <li><span class="feat-dot"></span>Arcera AI recognition account, always on</li>
-          <li><span class="feat-dot"></span>Annual renewal walkthrough included</li>
-          <li><span class="feat-dot"></span>Documentation updated as your home evolves</li>
-          <li><span class="feat-dot"></span>Preferred public adjuster pre-assigned to your file</li>
-          <li><span class="feat-dot"></span>Priority response when disaster strikes</li>
+        <div class="tier-price">
+          <div class="tier-price-amount">
+            <span class="price-monthly">$19<span>/mo</span></span>
+            <span class="price-yearly">or $182<span>/yr</span></span>
+          </div>
+          <p class="tier-price-unit">Billed monthly or annually</p>
+        </div>
+        <ul class="tier-features">
+          <li>Unlimited rooms</li>
+          <li>AI-powered documentation</li>
+          <li>Cloud sync &amp; backup</li>
+          <li>Export to PDF, JSON, CSV</li>
+          <li>Higher coverage limits</li>
+          <li>Auto-updates as you add items</li>
         </ul>
-
-        <p class="small-print">Includes everything in Onboarding as a prerequisite.</p>
-        <a href="schedule.html" class="btn-card btn-gold"><span>Get Started</span></a>
+        <a href="schedule.html" class="btn-tier-primary btn-tier-gold">Get Pro</a>
+        <p class="tier-note">14-day free trial, no credit card required</p>
       </div>
 
-      <!-- 03 — Claims Advocacy -->
-      <div class="pricing-card">
-        <p class="step-num">03 — Advocacy</p>
-        <h2 class="tier-name">Claims</h2>
-        <p class="tier-sub">Your adjuster fights the insurer. You pay only if they win.</p>
-
-        <div class="price-block">
-          <div class="price">10<sup style="font-size:22px; margin-top:6px;">%</sup></div>
-          <p class="price-note">of final settlement — paid at close only if they win</p>
-          <p class="price-note" style="margin-top:6px;">vs. <strong>California cap of 15%</strong></p>
+      <!-- Premium Tier -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <p class="tier-eyebrow">Tier</p>
+          <h2 class="tier-name">Premium</h2>
+          <p class="tier-sub">For families with multiple properties</p>
         </div>
-
-        <ul class="pricing-features">
-          <li><span class="feat-dot"></span>Vetted public adjuster assigned to your claim</li>
-          <li><span class="feat-dot"></span>No upfront cost — zero risk to you</li>
-          <li><span class="feat-dot"></span>Adjuster handles all insurer communication</li>
-          <li><span class="feat-dot"></span>5% below the California legal cap</li>
+        <div class="tier-price">
+          <div class="tier-price-amount">$39<span>/mo</span></div>
+          <p class="tier-price-unit">Billed monthly</p>
+        </div>
+        <ul class="tier-features">
+          <li>Everything in Pro</li>
+          <li>Up to 5 properties</li>
+          <li>Family plan (5 members)</li>
+          <li>Priority support</li>
+          <li>Early access to new features</li>
         </ul>
+        <a href="schedule.html" class="btn-tier-primary">Get Premium</a>
+        <p class="tier-note">Perfect for property managers</p>
+      </div>
 
-        <p class="small-print">Fee applies to the final settlement amount, collected only upon a successful outcome.</p>
-        <a href="help.html" class="btn-card btn-ghost"><span>See FAQ</span></a>
+      <!-- Lifetime Tier -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <p class="tier-eyebrow">Tier</p>
+          <h2 class="tier-name">Lifetime</h2>
+          <p class="tier-sub">One payment, lifetime protection</p>
+        </div>
+        <div class="tier-price">
+          <div class="tier-price-amount">$298</div>
+          <p class="tier-price-unit">One-time payment</p>
+        </div>
+        <ul class="tier-features">
+          <li>All Pro features</li>
+          <li>Never expires</li>
+          <li>No monthly fees, ever</li>
+          <li>Transferable to heirs</li>
+        </ul>
+        <a href="schedule.html" class="btn-tier-primary">Get Lifetime Access — $298</a>
+        <p class="tier-note">Best value for long-term peace of mind</p>
       </div>
 
     </div>
+  </div>
 
-    <div class="pricing-footer-block">
-      <p class="footer-cta-line">Ready to get started?&ensp;<a href="schedule.html" style="color:var(--gold); text-decoration:none;">Schedule your strategy call →</a></p>
-      <p class="footer-service-note">Currently serving Los Angeles homes only</p>
+  <!-- FEATURE COMPARISON -->
+  <div class="feature-comparison-section">
+    <div class="feature-comparison-inner">
+      <h2 class="comparison-heading">Compare Plans</h2>
+      
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Free</th>
+              <th>Pro</th>
+              <th>Premium</th>
+              <th>Lifetime</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rooms documented</td>
+              <td>Up to 3</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Documentation method</td>
+              <td>Manual</td>
+              <td>AI-assisted</td>
+              <td>AI-assisted</td>
+              <td>AI-assisted</td>
+            </tr>
+            <tr>
+              <td>Cloud storage</td>
+              <td>Basic</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Export formats</td>
+              <td>—</td>
+              <td>PDF, JSON, CSV</td>
+              <td>PDF, JSON, CSV</td>
+              <td>PDF, JSON, CSV</td>
+            </tr>
+            <tr>
+              <td>Properties</td>
+              <td>1</td>
+              <td>1</td>
+              <td>Up to 5</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Family members</td>
+              <td>1</td>
+              <td>1</td>
+              <td>5</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Coverage limits</td>
+              <td>$10,000</td>
+              <td>$100,000</td>
+              <td>$250,000</td>
+              <td>$100,000</td>
+            </tr>
+            <tr>
+              <td>Priority support</td>
+              <td>—</td>
+              <td>Standard</td>
+              <td>Priority</td>
+              <td>Standard</td>
+            </tr>
+            <tr>
+              <td>Early access</td>
+              <td>—</td>
+              <td>—</td>
+              <td>✓</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Expiration</td>
+              <td>Never</td>
+              <td>Monthly/Annual</td>
+              <td>Monthly</td>
+              <td>Never</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 
+  <!-- FAQ SECTION -->
+  <div class="faq-content">
+    <div class="faq-section-header">
+      <p class="faq-hero-eyebrow">Common Questions</p>
+      <h2 class="faq-hero-title">What you're wondering.</h2>
+      <p class="faq-hero-sub" style="margin-top: 1rem;">Have questions about our pricing or features? We've got answers.</p>
+      <a href="help.html" class="btn-tier-primary" style="display: inline-block; margin-top: 1.5rem; text-decoration: none;">View Full FAQ</a>
+    </div>
+  </div>
+
+  <!-- STILL NEED HELP -->
+  <div class="help-footer">
+    <div class="help-footer-inner">
+      <p class="help-footer-eyebrow">Still have questions?</p>
+      <h2 class="help-footer-title">Talk to us.</h2>
+      <p class="help-footer-sub">We'll follow up within one business day. Or lock in a time on our calendar now — no commitment required.</p>
+      <div class="help-actions">
+        <a href="schedule.html" class="help-btn help-btn-gold"><span>Schedule a Call</span></a>
+        <a href="contact.html" class="help-btn help-btn-ghost"><span>Send a Message</span></a>
+      </div>
+      <p class="faq-footer-service-note">Currently serving Los Angeles homes only</p>
+    </div>
   </div>
 
   <div id="site-footer"></div>
