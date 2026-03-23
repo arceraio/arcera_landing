@@ -1297,7 +1297,7 @@ body.page-pricing nav { position: sticky; top: 0; z-index: 100; background: var(
   font-family: var(--font-serif);
   font-size: 26px;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--bg);
   margin-bottom: 6px;
   letter-spacing: 0.02em;
 }
