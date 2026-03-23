@@ -3337,3 +3337,155 @@ body.page-terms nav { position: sticky; top: 0; z-index: 100; }
   .pm-actions { padding: 16px 16px 20px; }
   .pm-header { padding: 14px 16px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   TIERS SECTION (Digital vs Concierge)
+   Added 2026-03-23
+   ═══════════════════════════════════════════════════════════════════ */
+
+.tiers-section {
+  padding: 100px 24px;
+  background: var(--bg);
+}
+
+.tiers-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tiers-heading {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 60px;
+  line-height: 1.2;
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.tier-card {
+  background: #fff;
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+  padding: 40px 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(13,27,42,0.08);
+}
+
+.tier-header {
+  margin-bottom: 24px;
+}
+
+.tier-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.tier-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.tier-price {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.tier-price-amount {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--navy);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.tier-price-unit {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.tier-features {
+  list-style: none;
+  margin-bottom: 32px;
+}
+
+.tier-features li {
+  font-size: 15px;
+  color: var(--body);
+  padding: 10px 0;
+  padding-left: 28px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.tier-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.btn-tier-primary {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.btn-tier-primary:hover {
+  background: var(--gold);
+}
+
+.tier-note {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 16px;
+  font-weight: 300;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .tiers-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .tiers-heading {
+    font-size: 32px;
+  }
+  
+  .tier-card {
+    padding: 32px 24px;
+  }
+  
+  .tier-price-amount {
+    font-size: 36px;
+  }
+}
