@@ -1144,7 +1144,7 @@ body.page-pricing::before {
 .pricing-card:not(.featured) .step-num { color: rgba(201,168,76,0.6); }
 
 /* .tier-name font-family/weight from section 5 */
-.tier-name { font-size: 22px; letter-spacing: 0.06em; color: var(--navy); margin-bottom: 6px; }
+.tier-name { font-size: 22px; letter-spacing: 0.06em; color: var(--bg); margin-bottom: 6px; }
 .featured .tier-name { color: var(--bg); }
 
 .tier-sub { font-size: 12px; font-weight: 300; color: var(--muted); margin-bottom: 28px; line-height: 1.5; }
